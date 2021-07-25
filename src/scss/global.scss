@@ -12,6 +12,22 @@ body, h1, h2, h3, h4, h5, h6 { margin: 0; }
 *, *:after, *:before { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
 
 
+/*=================================================
+IMPORT FONTS
+=================================================== */
+
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+/* IMPORT PARTIALS
+=================================================== */
+
+@import url('./partials/form.scss');
+
+
 body {
-    background-color:red;
+    font-family: 'Inter', Helvetica Neue, Helvetica, Arial, sans-serif;
+    width:100%;
+    height:100%;
 }
+
