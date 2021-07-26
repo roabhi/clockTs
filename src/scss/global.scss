@@ -23,11 +23,59 @@ IMPORT FONTS
 =================================================== */
 
 @import url('./partials/form.scss');
+@import url('./partials/clocks.scss');
+
+$--primary-color: #000;
+$--secondary-color: #fff;
 
 
 body {
     font-family: 'Inter', Helvetica Neue, Helvetica, Arial, sans-serif;
     width:100%;
     height:100%;
+}
+
+html {
+    transition: all .5s ease-in;
+}
+
+html.dark {
+    $--primary-color: #fff;
+    $--secondary-color: #333;
+}
+
+
+
+html.dark {
+    background-color:#111;
+    color:$--primary-color;
+}
+
+h3.title {
+    position:fixed;
+    text-align:center;
+    left:0;
+    right:0;
+    margin:0 auto;
+    padding:3rem 0;
+    z-index:1;
+}
+
+
+.toggle {
+    background-color:$--primary-color;
+    color:$--secondary-color;
+    border:0;
+    border-radius:0.250rem;
+    padding:0.500rem 0.750rem;
+    position:fixed;
+    top:3rem;
+    right:1.5rem;
+    cursor:pointer;
+    z-index:10;
+
+    &:focus {
+        outline: none;
+    }
 }
 

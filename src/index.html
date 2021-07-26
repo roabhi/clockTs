@@ -7,12 +7,13 @@
     <title>ClockTs - A simple, visual and fun way of keep tracking different times zones made on TypeScript for the web</title>
 </head>
 <body>
-    <div class="form-holder">
-        <div class="container-form">
-            <!-- <h3>New Clock</h3> -->
+    <h3 id="title" class="title">ClockTs</h3>
+    <!-- <button class="toggle">Dark mode</button> -->
+    <div id="form-holder" class="form-holder">
+        <div class="container-form">            
             <div class="form-control">
                 <input id="search" type="text" placeholder="at least three letters" required>
-                <label>Enter a City</label>
+                <label>Enter a city name</label>
             </div>
             <!-- <div class="form-control">
                 <input type="text" required>
@@ -25,9 +26,10 @@
                 <li>Barcelona, Tu Padre</li>
                 <li>Barcelona, Tu Madre</li> -->
             </ul>
-            <button class="btn">Ok</button>        
+            <button id="submit" class="btn">Ok</button>        
         </div> 
-    </div>    
+    </div>  
+    <div id="clocks-holder" class="clocks-holder"></div>  
     <script src="./ts/index.ts"></script>
 </body>
 </html>

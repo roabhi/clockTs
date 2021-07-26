@@ -1,7 +1,7 @@
 .form-holder {
     width:100%;
     height:100%;
-    position:absolute;
+    position:fixed;
     top:0;
     left:0;
     display:flex;
@@ -10,6 +10,13 @@
     justify-content:center;
     overflow: hidden;
     margin:0;
+    
+    transform:translateY(-100%);
+    transition:transform .5s cubic-bezier(0.075, 0.82, 0.165, 1);
+
+    &.show {
+        transform:translateY(0);
+    }
 
     .container-form {
         border:none;
@@ -52,7 +59,7 @@
                     
                     + label span {
                         color:rgb(199, 199, 199);
-                        transform:translateY(-2.125rem);
+                        transform:translateY(-3.125rem);
 
                         
                         

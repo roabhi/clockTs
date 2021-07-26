@@ -1,0 +1,116 @@
+$--primary-color: #000;
+$--secondary-color: #fff;
+
+
+.clocks-holder {
+    width:100%;
+    height:100vh;
+    position:fixed;
+    top:0;
+    left:0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(18.750rem, 2fr));
+    grid-gap: 1rem;
+    transform:translateY(100%);
+    transition:transform .5s cubic-bezier(0.075, 0.82, 0.165, 1);
+    overflow-y: auto;
+
+    &.show {
+        transform:translateY(0);
+    }
+
+    .clock-ts-holder {
+        display:flex;
+        flex-direction:column;
+        align-items: center;
+        justify-content:center;
+
+        .clock-label {
+            padding:0 0 3rem 0;
+            font-weight:400;
+        }
+
+        .clock {
+            position:relative;
+            width: 12.500rem;
+            height: 12.500rem;
+
+            .needle {
+                background-color: $--primary-color;
+                position:absolute;
+                top:50%;
+                left:50%;
+                height:4.063rem;
+                width:0.188rem;
+                transform-origin: bottom center;
+
+                &.hour {
+                    transform: translate(-50%, -100%) rotate(0deg);
+                }
+    
+                &.minute {
+                    transform: translate(-50%, -100%) rotate(0deg);
+                    height:6.250rem;
+                }
+    
+                &.second {
+                    transform: translate(-50%, -100%) rotate(0deg);
+                    height:6.250rem;
+                    background-color:#e74c3c;
+                }
+
+            }/*END NEEDLE*/
+
+            .center-point {
+                background-color:#e74c3c;
+                width:0.625rem;
+                height:0.625rem;
+                position:absolute;
+                top:50%;
+                left:50%;
+                transform:translate(-50%, -50%);
+                border-radius:50%;
+    
+                &::after {
+                    content:'';
+                    background-color:$--primary-color;
+                    width:0.313rem;
+                    height:0.313rem;
+                    position:absolute;
+                    top:50%;
+                    left:50%;
+                    transform:translate(-50%, -50%);
+                    border-radius:50%;
+                }
+            }
+
+        }/*END CLOCK*/
+
+
+        .time {
+            font-size:2rem;
+            font-weight: 700;
+            padding:1rem 0 0 0;
+        }
+        
+        .date {
+            color:#aaa;
+            font-size:2.500rem;
+            letter-spacing: 0.019rem;
+            
+            span.circle {
+                background-color: $--primary-color;
+                color: $--secondary-color;
+                border-radius: 50%;
+                width:1.125rem;
+                height:1.125rem;
+                display:inline-flex;
+                justify-content: center;
+                line-height:1.125rem;
+                transition:all .5s ease-in;
+                font-size: 0.750rem;
+            }
+        }
+
+    }
+}
