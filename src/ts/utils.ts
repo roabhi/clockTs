@@ -30,4 +30,13 @@ showForm = ():void => {
 showClocks = ():void => {
     !clocksHolder.classList.contains('show') ? clocksHolder.classList.add('show') : null;
     formHolder.classList.contains('show') ? formHolder.classList.remove('show') : null;
+},
+createMessage = (city:string, country:string):HTMLElement => {
+    const _m = document.createElement('p');
+    _m.className = 'message';
+    _m.innerHTML = `Added ${city}, ${country}`;
+
+    return _m;
+
+    
 }

@@ -37,8 +37,8 @@ IMPORT MODULES
 ============================
 */
 
-import {labels, search, results, formHolder, clocksArr, submitBtn, clocksObjArr, clocksHolder} from './globals'; //import const at global scope
-import {getLuxonOffSet, showClocks } from './utils';
+import {labels, search, results, formHolder, clocksArr, submitBtn, messages, clocksObjArr, clocksHolder} from './globals'; //import const at global scope
+import {createMessage, getLuxonOffSet, showClocks } from './utils';
 
 /*
 =============================
@@ -73,17 +73,17 @@ import '../scss/global.scss';
         });   
    }
 
-   if(clocksObjArr.length) {
+//    if(clocksObjArr.length) {
 
-        clocksObjArr.forEach((el,i) => {
-
-            
+//         clocksObjArr.forEach((el,i) => {
 
             
 
-        });
+            
 
-   }
+//         });
+
+//    }
    
    
 
@@ -129,14 +129,7 @@ onResultsClick = (e:Event):void =>  {
 
     const _t = e.target as HTMLElement;
 
-    
-    // console.log( getLuxonOffSet(_t.dataset.timezone) );
-
-    //let myClock = new Clock(getLuxonOffSet(_t.dataset.timezone));
-
-    // clocksArr.push(myClock);
-
-    // console.log(clocksArr);
+    _t.classList.add('selected');
 
     let myCityObj: {
         city:string,
@@ -154,10 +147,14 @@ onResultsClick = (e:Event):void =>  {
     let myClock = new Clock(myCityObj);
 
     clocksArr.push(myClock);
-    clocksObjArr.push(myCityObj);
 
-    
+    const _message = createMessage(myCityObj.city, myCityObj.country);
 
+    messages.appendChild(_message);
+
+    setTimeout( () => {
+        _message.parentNode.removeChild(_message);
+    }, 1500);
 
 
 },
