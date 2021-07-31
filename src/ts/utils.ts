@@ -6,7 +6,7 @@
 
 
 import {DateTime} from 'luxon';
-import { formHolder, search, results, clocksHolder } from './globals';
+import { formHolder, search, results, clocksHolder, clocksArr } from './globals';
 
 
 export const getLuxonOffSet = (_tz:string):number => {
@@ -46,5 +46,33 @@ createMessage = (city:string, country:string):HTMLElement => {
 
     return _m;
 
+    
+},
+isAlready = (_city:string, _country:string):boolean => {
+    
+    let answer:boolean = false;
+    
+    if(clocksArr.length){
+
+        for(let _x in clocksArr) {
+            
+            console.log(_city.toLowerCase(), clocksArr[_x].city.toLowerCase());
+            console.log(_country.toLowerCase(), clocksArr[_x].country.toLowerCase());
+            
+            if(_city.toLocaleLowerCase() == clocksArr[_x].city.toLocaleLowerCase()){
+
+                if(_country.toLowerCase() == clocksArr[_x].country.toLowerCase()) {
+                    answer = true;
+                }
+
+            }
+
+        }
+
+    }
+    
+    return answer;
+
+    
     
 }

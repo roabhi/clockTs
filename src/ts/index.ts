@@ -38,7 +38,7 @@ IMPORT MODULES
 */
 
 import {labels, search, results, formHolder, clocksArr, submitBtn, addClocksBtn, messages, clocksObjArr, clocksHolder} from './globals'; //import const at global scope
-import {createMessage, getLuxonOffSet, toggleScrens } from './utils';
+import {createMessage, getLuxonOffSet, toggleScrens, isAlready } from './utils';
 
 /*
 =============================
@@ -183,11 +183,15 @@ onSearch = (e:Event):void => {
             
             if( String(data[i].city).toLowerCase() == String(_t.value).toLowerCase() ){
 
-                for(let clock in clocksArr) {
-                    console.log(clocksArr[clock].city);
-                }
 
-                results.innerHTML += `<li data-timezone="${data[i].timezone}">${data[i].city}, ${data[i].country}</li>`;
+
+                !isAlready(String(data[i].city), String(data[i].country)) ? results.innerHTML += `<li data-timezone="${data[i].timezone}">${data[i].city}, ${data[i].country}</li>` : null;
+
+                // console.log(isAlready( String(data[i].city), String(data[i].country) ));
+
+                // results.innerHTML += `<li data-timezone="${data[i].timezone}">${data[i].city}, ${data[i].country}</li>`;
+
+
             }
 
            
@@ -216,6 +220,8 @@ init = (e:Event):void => {
     
     
     !formHolder.classList.contains('show') ? formHolder.classList.add('show'): null;
+
+   
     
     
     labels.forEach(el => {         
@@ -225,6 +231,8 @@ init = (e:Event):void => {
             .map((letter, i) =>  `<span style="transition-delay:${i * 30 }ms">${letter}</span>`)
             .join('')
     });
+
+
 
 
    
