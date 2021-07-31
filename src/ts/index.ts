@@ -37,8 +37,8 @@ IMPORT MODULES
 ============================
 */
 
-import {labels, search, results, formHolder, clocksArr, submitBtn, messages, clocksObjArr, clocksHolder} from './globals'; //import const at global scope
-import {createMessage, getLuxonOffSet, showClocks } from './utils';
+import {labels, search, results, formHolder, clocksArr, submitBtn, addClocksBtn, messages, clocksObjArr, clocksHolder} from './globals'; //import const at global scope
+import {createMessage, getLuxonOffSet, toggleScrens } from './utils';
 
 /*
 =============================
@@ -110,13 +110,22 @@ runClock = ():void => {
  * LOGIC
  */
 
-const onSubmit = (e:Event):void =>  {
+const onAddClocks = (e:Event):void => {
+
+    console.log(e);
+
+    toggleScrens();
+
+},
+
+
+onSubmit = (e:Event):void =>  {
 
     const _btn = e.target as HTMLButtonElement;
 
     e.preventDefault();
 
-    showClocks();
+    toggleScrens();
 
     runClock();
 
@@ -172,7 +181,12 @@ onSearch = (e:Event):void => {
         
         for(let i in data) {
             
-            if( String(data[i].city).toLowerCase( )== String(_t.value).toLowerCase() ){
+            if( String(data[i].city).toLowerCase() == String(_t.value).toLowerCase() ){
+
+                for(let clock in clocksArr) {
+                    console.log(clocksArr[clock].city);
+                }
+
                 results.innerHTML += `<li data-timezone="${data[i].timezone}">${data[i].city}, ${data[i].country}</li>`;
             }
 
@@ -238,6 +252,15 @@ init = (e:Event):void => {
      */
 
      submitBtn.addEventListener('click', onSubmit, false);
+
+     /**
+      * 
+      * Listen for clicks on the + button from clocks panel to goback to form
+      * 
+      */
+
+     addClocksBtn.addEventListener('click', onAddClocks, false);
+
 
      /**
       * 

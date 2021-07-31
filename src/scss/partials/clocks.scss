@@ -19,6 +19,18 @@ $--secondary-color: #fff;
         transform:translateY(0);
     }
 
+    .add-clock {
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        justify-content: center;
+
+        span {
+            font-size:3rem;
+            cursor:pointer;
+        }
+    }
+
     .clock-ts-holder {
         display:flex;
         flex-direction:column;
@@ -30,61 +42,111 @@ $--secondary-color: #fff;
             font-weight:400;
         }
 
-        .clock {
-            position:relative;
-            width: 12.500rem;
-            height: 12.500rem;
+        .clock-shape {
 
-            .needle {
-                background-color: $--primary-color;
-                position:absolute;
-                top:50%;
-                left:50%;
-                height:4.063rem;
-                width:0.188rem;
-                transform-origin: bottom center;
+            border: 0.63rem solid #7A7A7A;
+            border-radius: 50%;
 
-                &.hour {
-                    transform: translate(-50%, -100%) rotate(0deg);
+
+
+            .clock {
+                position:relative;
+                width: 12.500rem;
+                height: 12.500rem;
+
+                transform:scale(0.85);
+
+                .marker {
+                    position:absolute;
+                    background:#333 none;
+
+
+                    &.twelve {
+                        left:calc(50% - 0.125rem);
+                        top:-0.063rem;
+                        height:0.63rem;
+                        width:0.250rem;
+                    }
+
+                    &.three {
+                        right:-0.063rem;
+                        top:calc(50% - 0.125rem);
+                        width:0.63rem;
+                        height:0.250rem;
+                    }
+
+                    &.six {
+                        left:calc(50% - 0.125rem);
+                        bottom:-0.063rem;
+                        height:0.63rem;
+                        width:0.250rem;
+                    }
+
+                    &.nine {
+                        left:-0.063rem;
+                        top:calc(50% - 0.125rem);
+                        width:0.63rem;
+                        height:0.250rem;
+                    }
                 }
+
+
     
-                &.minute {
-                    transform: translate(-50%, -100%) rotate(0deg);
-                    height:6.250rem;
-                }
+                .needle {
+                    background-color: $--primary-color;
+                    position:absolute;
+                    top:50%;
+                    left:50%;
+                    height:4.063rem;
+                    width:0.188rem;
+                    transform-origin: bottom center;
     
-                &.second {
-                    transform: translate(-50%, -100%) rotate(0deg);
-                    height:6.250rem;
+                    &.hour {
+                        transform: translate(-50%, -100%) rotate(0deg);
+                    }
+        
+                    &.minute {
+                        transform: translate(-50%, -100%) rotate(0deg);
+                        height:6.250rem;
+                    }
+        
+                    &.second {
+                        transform: translate(-50%, -100%) rotate(0deg);
+                        height:6.250rem;
+                        background-color:#e74c3c;
+                        z-index:1;
+                    }
+    
+                }/*END NEEDLE*/
+    
+                .center-point {
                     background-color:#e74c3c;
-                }
-
-            }/*END NEEDLE*/
-
-            .center-point {
-                background-color:#e74c3c;
-                width:0.625rem;
-                height:0.625rem;
-                position:absolute;
-                top:50%;
-                left:50%;
-                transform:translate(-50%, -50%);
-                border-radius:50%;
-    
-                &::after {
-                    content:'';
-                    background-color:$--primary-color;
-                    width:0.313rem;
-                    height:0.313rem;
+                    width:0.625rem;
+                    height:0.625rem;
                     position:absolute;
                     top:50%;
                     left:50%;
                     transform:translate(-50%, -50%);
                     border-radius:50%;
+        
+                    &::after {
+                        content:'';
+                        background-color:$--primary-color;
+                        width:0.313rem;
+                        height:0.313rem;
+                        position:absolute;
+                        top:50%;
+                        left:50%;
+                        transform:translate(-50%, -50%);
+                        border-radius:50%;
+                    }
                 }
-            }
+    
+            }/*END CLOCK*/
 
-        }/*END CLOCK*/
+        }
+
+        
 
 
         .time {
