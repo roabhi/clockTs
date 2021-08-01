@@ -5,6 +5,7 @@ import {DateTime} from 'luxon';
 export class Clock {
 
     clockHolder:HTMLElement;
+    clockShape:HTMLElement;
     city:string;
     country:string;
     iana:string;
@@ -12,6 +13,10 @@ export class Clock {
     container:HTMLElement;
     clockLabel:HTMLHeadingElement;
     clock:HTMLElement;
+    markerTwelve:HTMLElement;
+    markerSix:HTMLElement;
+    markerThree:HTMLElement;
+    markerNine:HTMLElement;
     hourEl:HTMLElement;
     minuteEl:HTMLElement;
     secondEl:HTMLElement;
@@ -37,7 +42,14 @@ export class Clock {
 
         //Create HTMLNodes
         this.clockLabel = document.createElement('h4');
+        this.clockShape = document.createElement('div');
         this.clock = document.createElement('div');
+
+        this.markerTwelve = document.createElement('div');
+        this.markerSix = document.createElement('div');
+        this.markerThree = document.createElement('div');
+        this.markerNine = document.createElement('div');
+
         this.hourEl = document.createElement('div');
         this.minuteEl = document.createElement('div');
         this.secondEl = document.createElement('div');
@@ -48,6 +60,14 @@ export class Clock {
         this.container.className = 'clock-ts-holder';
         this.clockLabel.className = 'clock-label';
         this.clock.className = 'clock';
+
+        this.clockShape.className = 'clock-shape';
+        this.markerTwelve.className = 'marker twelve';
+        this.markerSix.className = 'marker six';
+        this.markerThree.className = 'marker three';
+        this.markerNine.className = 'marker nine';
+
+
         this.hourEl.className = 'needle hour';
         this.minuteEl.className = 'needle minute';
         this.secondEl.className = 'needle second';
@@ -57,19 +77,26 @@ export class Clock {
 
         this.clockLabel.innerHTML = `${_o.city}, ${_o.country}`;
 
+        
+        this.clock.appendChild(this.markerTwelve);
+        this.clock.appendChild(this.markerSix);
+        this.clock.appendChild(this.markerThree);
+        this.clock.appendChild(this.markerNine);
         this.clock.appendChild(this.hourEl);
         this.clock.appendChild(this.minuteEl);
         this.clock.appendChild(this.secondEl);
         this.clock.appendChild(this.centerPoint);
 
+        this.clockShape.appendChild(this.clock);
+
         this.container.appendChild(this.clockLabel);
-        this.container.appendChild(this.clock);
+        this.container.appendChild(this.clockShape);
         this.container.appendChild(this.timeEl);
         this.container.appendChild(this.dateEl);
 
         
 
-        this.clockHolder.appendChild(this.container);
+        this.clockHolder.insertBefore(this.container, document.getElementById('add-clock'));
     }
 
 
@@ -92,7 +119,7 @@ export class Clock {
 
         let myLocalTime = DateTime.fromObject({}, {zone: this.iana})
 
-        console.log(myLocalTime);
+        // console.log(myLocalTime);
 
         this.setClock(myLocalTime.hour, myLocalTime.minute, myLocalTime.second);
 

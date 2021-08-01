@@ -10,6 +10,10 @@
     <h3 id="title" class="title">ClockTs</h3>
     <!-- <button class="toggle">Dark mode</button> -->
     <div id="form-holder" class="form-holder">
+        <div id="messages" class="messages">
+            <!-- <p class="message">Added Barcelona, Spain</p>
+            <p class="message">Added Barcelona, Spain</p> -->
+        </div>
         <div class="container-form">            
             <div class="form-control">
                 <input id="search" type="text" placeholder="at least three letters" required>
@@ -29,7 +33,9 @@
             <button id="submit" class="btn">Ok</button>        
         </div> 
     </div>  
-    <div id="clocks-holder" class="clocks-holder"></div>  
+    <div id="clocks-holder" class="clocks-holder">
+        <div id="add-clock" class="add-clock"><span>+</span></div>
+    </div>  
     <script src="./ts/index.ts"></script>
 </body>
 </html>

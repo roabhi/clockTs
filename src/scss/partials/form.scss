@@ -98,10 +98,23 @@
                 border-bottom:#ccc 0.0638rem solid;
                 color:#8b8b8b;
                 cursor:pointer;
+                visibility: visible;
+
+                max-height:3.5rem;
+                transition:max-height .5s ease, padding .5s ease, border .5s linear, visibility 0s linear .5s;
+
 
                 &:first-of-type {
                     padding-top:0.5rem;
                 }
+
+                &.selected {
+                    max-height:0;
+                    padding:0;
+                    border-bottom:none;
+                    overflow:hidden;
+                    visibility: hidden;
+                 }
             }
         }
 
@@ -130,6 +143,30 @@
 
         }
     }
+
+    div.messages {
+
+        position: absolute;
+        right:3rem;
+        top:3rem;
+
+        p.message {
+        
+            margin:1rem 0 0 0;
+            background:rgb(140, 207, 6) none;
+            padding:1rem;
+            font-size:0.875rem;
+            border-radius:0.5rem;
+            color:#fff;
+            
+           
+    
+           
+        }
+
+    }
+
+    
 
 
 }

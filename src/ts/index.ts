@@ -37,8 +37,8 @@ IMPORT MODULES
 ============================
 */
 
-import {labels, search, results, formHolder, clocksArr, submitBtn, clocksObjArr, clocksHolder} from './globals'; //import const at global scope
-import {getLuxonOffSet, showClocks } from './utils';
+import {labels, search, results, formHolder, clocksArr, submitBtn, addClocksBtn, messages, clocksObjArr, clocksHolder} from './globals'; //import const at global scope
+import {createMessage, getLuxonOffSet, toggleScrens, isAlready } from './utils';
 
 /*
 =============================
@@ -73,17 +73,17 @@ import '../scss/global.scss';
         });   
    }
 
-   if(clocksObjArr.length) {
+//    if(clocksObjArr.length) {
 
-        clocksObjArr.forEach((el,i) => {
-
-            
+//         clocksObjArr.forEach((el,i) => {
 
             
 
-        });
+            
 
-   }
+//         });
+
+//    }
    
    
 
@@ -110,13 +110,22 @@ runClock = ():void => {
  * LOGIC
  */
 
-const onSubmit = (e:Event):void =>  {
+const onAddClocks = (e:Event):void => {
+
+    console.log(e);
+
+    toggleScrens();
+
+},
+
+
+onSubmit = (e:Event):void =>  {
 
     const _btn = e.target as HTMLButtonElement;
 
     e.preventDefault();
 
-    showClocks();
+    toggleScrens();
 
     runClock();
 
@@ -129,14 +138,7 @@ onResultsClick = (e:Event):void =>  {
 
     const _t = e.target as HTMLElement;
 
-    
-    // console.log( getLuxonOffSet(_t.dataset.timezone) );
-
-    //let myClock = new Clock(getLuxonOffSet(_t.dataset.timezone));
-
-    // clocksArr.push(myClock);
-
-    // console.log(clocksArr);
+    _t.classList.add('selected');
 
     let myCityObj: {
         city:string,
@@ -154,10 +156,14 @@ onResultsClick = (e:Event):void =>  {
     let myClock = new Clock(myCityObj);
 
     clocksArr.push(myClock);
-    clocksObjArr.push(myCityObj);
 
-    
+    const _message = createMessage(myCityObj.city, myCityObj.country);
 
+    messages.appendChild(_message);
+
+    setTimeout( () => {
+        _message.parentNode.removeChild(_message);
+    }, 1500);
 
 
 },
@@ -175,8 +181,17 @@ onSearch = (e:Event):void => {
         
         for(let i in data) {
             
-            if( String(data[i].city).toLowerCase( )== String(_t.value).toLowerCase() ){
-                results.innerHTML += `<li data-timezone="${data[i].timezone}">${data[i].city}, ${data[i].country}</li>`;
+            if( String(data[i].city).toLowerCase() == String(_t.value).toLowerCase() ){
+
+
+
+                !isAlready(String(data[i].city), String(data[i].country)) ? results.innerHTML += `<li data-timezone="${data[i].timezone}">${data[i].city}, ${data[i].country}</li>` : null;
+
+                // console.log(isAlready( String(data[i].city), String(data[i].country) ));
+
+                // results.innerHTML += `<li data-timezone="${data[i].timezone}">${data[i].city}, ${data[i].country}</li>`;
+
+
             }
 
            
@@ -205,6 +220,8 @@ init = (e:Event):void => {
     
     
     !formHolder.classList.contains('show') ? formHolder.classList.add('show'): null;
+
+   
     
     
     labels.forEach(el => {         
@@ -214,6 +231,8 @@ init = (e:Event):void => {
             .map((letter, i) =>  `<span style="transition-delay:${i * 30 }ms">${letter}</span>`)
             .join('')
     });
+
+
 
 
    
@@ -241,6 +260,15 @@ init = (e:Event):void => {
      */
 
      submitBtn.addEventListener('click', onSubmit, false);
+
+     /**
+      * 
+      * Listen for clicks on the + button from clocks panel to goback to form
+      * 
+      */
+
+     addClocksBtn.addEventListener('click', onAddClocks, false);
+
 
      /**
       * 

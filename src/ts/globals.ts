@@ -6,7 +6,9 @@ export const toggle:Element = document.querySelector('.toggle'),
              labels:Element[] = Array.from(document.querySelectorAll('.form-control label')),
              search:Element = document.getElementById('search'),
              submitBtn:Element = document.getElementById('submit'),
+             addClocksBtn:Element = document.getElementById('add-clock'),
              results:Element = document.getElementById('results'),
+             messages:Element = document.getElementById('messages'),
              clocksArr:Clock[] = [],
              clocksObjArr:Object[] = [];
 
