@@ -48,7 +48,7 @@ createMessage = (city:string, country:string):HTMLElement => {
 
     
 },
-isAlready = (_city:string, _country:string):boolean => {
+isAlreadyOnPage = (_city:string, _country:string):boolean => {
     
     let answer:boolean = false;
     
@@ -56,8 +56,8 @@ isAlready = (_city:string, _country:string):boolean => {
 
         for(let _x in clocksArr) {
             
-            console.log(_city.toLowerCase(), clocksArr[_x].city.toLowerCase());
-            console.log(_country.toLowerCase(), clocksArr[_x].country.toLowerCase());
+            // console.log(_city.toLowerCase(), clocksArr[_x].city.toLowerCase());
+            // console.log(_country.toLowerCase(), clocksArr[_x].country.toLowerCase());
             
             if(_city.toLocaleLowerCase() == clocksArr[_x].city.toLocaleLowerCase()){
 
@@ -75,4 +75,26 @@ isAlready = (_city:string, _country:string):boolean => {
 
     
     
+}, 
+isAlreadyOnList = (_el:string):boolean => {
+    let answer:boolean = false;
+
+    if(results.children.length) {
+
+        Array.from(results.querySelectorAll('li')).map((_obj:HTMLLIElement) => {
+            _el == _obj.outerHTML ? answer = true : null;
+        });
+
+    }
+
+    return answer;
+},
+fetchData = async(_name:string):Promise<JSON> => {
+    
+    const call = await fetch(`https://ts--api--rest.herokuapp.com/cities/${_name}`),
+          res = await call.json();
+
+    return res.data;   
+    
+
 }

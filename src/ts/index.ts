@@ -38,7 +38,7 @@ IMPORT MODULES
 */
 
 import {labels, search, results, formHolder, clocksArr, submitBtn, addClocksBtn, messages, clocksObjArr, clocksHolder} from './globals'; //import const at global scope
-import {createMessage, getLuxonOffSet, toggleScrens, isAlready } from './utils';
+import {createMessage, getLuxonOffSet, toggleScrens, isAlreadyOnList, fetchData, isAlreadyOnPage } from './utils';
 
 /*
 =============================
@@ -175,9 +175,53 @@ onSearch = (e:Event):void => {
 
    
 
-    if(_t.value.length > 2) {
+    if(_t.value.length > 3) {
 
         results.innerHTML = '';
+
+        //Call API
+
+        // let result = fetchData(String(_t.value).toLowerCase())
+        // .then(  
+        //     (_d) => {       
+          
+        //     for(let i in _d)  {
+
+      
+        //         if( String(_d[i].city).toLowerCase() == String(_t.value).toLowerCase() ){
+
+                    
+        //             // !isAlreadyOnPage(String(_d[i].city), String(_d[i].country)) ? results.innerHTML += `<li data-timezone="${_d[i].timezone}">${_d[i].city}, ${_d[i].country}</li>` : null;
+    
+        //             // console.log(isAlreadyOnPage( String(_d[i].city), String(_d[i].country) ));
+                
+        //             //results.innerHTML += `<li data-timezone="${_d[i].timezone}">${_d[i].city}, ${_d[i].country}</li>`;
+
+        //             if(!isAlreadyOnPage(String(_d[i].city), String(_d[i].country))) {
+
+        //                 const li = `<li data-timezone="${_d[i].timezone}">${_d[i].city}, ${_d[i].country}</li>`;
+
+        //                 if(!isAlreadyOnList(li)){
+        //                     results.innerHTML += `<li data-timezone="${_d[i].timezone}">${_d[i].city}, ${_d[i].country}</li>`;
+        //                 }
+
+        //             }
+          
+            
+        //         } 
+
+        //     }                
+                  
+
+
+        // },(error) => {
+        //     console.log('error');
+        // });
+
+
+        
+
+        //DEV
         
         for(let i in data) {
             
@@ -185,7 +229,7 @@ onSearch = (e:Event):void => {
 
 
 
-                !isAlready(String(data[i].city), String(data[i].country)) ? results.innerHTML += `<li data-timezone="${data[i].timezone}">${data[i].city}, ${data[i].country}</li>` : null;
+                !isAlreadyOnPage(String(data[i].city), String(data[i].country)) ? results.innerHTML += `<li data-timezone="${data[i].timezone}">${data[i].city}, ${data[i].country}</li>` : null;
 
                 // console.log(isAlready( String(data[i].city), String(data[i].country) ));
 
@@ -197,9 +241,19 @@ onSearch = (e:Event):void => {
            
         }
 
+       
+
     }else {
         results.innerHTML = '';
     }
+
+
+    /**
+     * 
+     * Interactive
+     */
+
+    
 
 },
 // themeSwitcher = (e:Event):void => {
