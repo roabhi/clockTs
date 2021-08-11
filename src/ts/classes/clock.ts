@@ -7,6 +7,7 @@ export class Clock {
 
     clockHolder:HTMLElement;
     clockShape:HTMLElement;
+    clockRemove:HTMLElement;
     city:string;
     country:string;
     iana:string;
@@ -43,6 +44,7 @@ export class Clock {
 
         //Create HTMLNodes
         this.clockLabel = document.createElement('h4');
+        this.clockRemove = document.createElement('div');
         this.clockShape = document.createElement('div');
         this.clock = document.createElement('div');
 
@@ -63,10 +65,13 @@ export class Clock {
         this.clock.className = 'clock';
 
         this.clockShape.className = 'clock-shape';
+        this.clockRemove.className = 'clock-remove';
         this.markerTwelve.className = 'marker twelve';
         this.markerSix.className = 'marker six';
         this.markerThree.className = 'marker three';
         this.markerNine.className = 'marker nine';
+
+        this.clockRemove.innerHTML = '-';
 
 
         this.hourEl.className = 'needle hour';
@@ -88,9 +93,12 @@ export class Clock {
         this.clock.appendChild(this.secondEl);
         this.clock.appendChild(this.centerPoint);
 
+        
+
         this.clockShape.appendChild(this.clock);
 
         this.container.appendChild(this.clockLabel);
+        this.container.appendChild(this.clockRemove);
         this.container.appendChild(this.clockShape);
         this.container.appendChild(this.timeEl);
         this.container.appendChild(this.dateEl);
@@ -102,10 +110,15 @@ export class Clock {
          * 
          * ADD interacive
          */
+
+        
+        this.clockShape.addEventListener('click', interactive.clockRemove, false);
+
         this.container.setAttribute('draggable', 'true'); //Make draggable
         this.container.addEventListener('dragstart', interactive.dragStart, false);
         this.container.addEventListener('dragend', interactive.dragEnd, false);
         this.container.addEventListener('drop', interactive.dragDrop, false);
+        
 
  
         this.clockHolder.insertBefore(this.container, document.getElementById('add-clock'));
