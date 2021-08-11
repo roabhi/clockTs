@@ -72,19 +72,7 @@ import '../scss/global.scss';
 
         });   
    }
-
-//    if(clocksObjArr.length) {
-
-//         clocksObjArr.forEach((el,i) => {
-
-            
-
-            
-
-//         });
-
-//    }
-   
+  
    
 
 },

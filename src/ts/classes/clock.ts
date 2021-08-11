@@ -102,18 +102,12 @@ export class Clock {
          * 
          * ADD interacive
          */
-        // this.container.setAttribute('draggable', 'true'); //Make draggable
-        // this.container.addEventListener('dragstart', interactive.dragStart, false);
-        // this.container.addEventListener('dragend', interactive.dragEnd, false);
+        this.container.setAttribute('draggable', 'true'); //Make draggable
+        this.container.addEventListener('dragstart', interactive.dragStart, false);
+        this.container.addEventListener('dragend', interactive.dragEnd, false);
+        this.container.addEventListener('drop', interactive.dragDrop, false);
 
-        // this.container.addEventListener('dragover', interactive.dragOver, false);
-        // this.container.addEventListener('dragenter', interactive.dragEnter, false);
-        // this.container.addEventListener('dragleave', interactive.dragLeave, false);
-        // this.container.addEventListener('drop', interactive.dragDrop, false);
-
-        this.container.addEventListener('mousedown', interactive.mouseDown, false);
-        this.container.addEventListener('mouseup', interactive.mouseUp, false);
-
+ 
         this.clockHolder.insertBefore(this.container, document.getElementById('add-clock'));
     }
 
