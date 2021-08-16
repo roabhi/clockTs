@@ -1,6 +1,6 @@
 import { Clock } from "./classes/clock";
-import { clocksHolder, clocksArr } from "./globals";
-import { isAlreadyOnPage } from "./utils";
+import { clocksHolder, clocksArr, messages } from "./globals";
+import { createMessage, isAlreadyOnPage } from "./utils";
 
 
 export const dragStart = (e:Event):void => {
@@ -81,7 +81,8 @@ dragDrop = (e:Event):void => {
 clockRemove = (e:Event):void => {
     const _el = e.currentTarget as Element,
           _country:string = _el.parentNode.querySelector('h4').textContent.substr( _el.parentNode.querySelector('h4').textContent.indexOf(',')+ 1).trim(),
-          _city:string = _el.parentNode.querySelector('h4').textContent.substr( 0, _el.parentNode.querySelector('h4').textContent.indexOf(','));
+          _city:string = _el.parentNode.querySelector('h4').textContent.substr( 0, _el.parentNode.querySelector('h4').textContent.indexOf(',')),
+          _message = createMessage(_city,_country,'remove');
 
     // console.log(`the clock about to remove is city ${_city}, and country ${_country}`);
 
@@ -91,8 +92,7 @@ clockRemove = (e:Event):void => {
     
     clocksArr.forEach((_el:Clock, _i:number) => {
 
-        // console.log(clocksArr[_i].country, clocksArr[_i].city);
-        
+       
         if(clocksArr[_i].country == _country && clocksArr[_i].city == _city) {
             index = _i;
         }
@@ -100,10 +100,24 @@ clockRemove = (e:Event):void => {
           
     });
 
-    clocksHolder.removeChild(_el.parentNode);
+    removeFromDom(clocksHolder, _el.parentNode as Element, 0);
+
     clocksArr.splice(index,1);
 
-    // console.log(clocksArr);
+    localStorage.setItem('clockTsData', JSON.stringify(clocksArr));
 
+    // console.log(JSON.parse(localStorage.clockTsData), clocksArr);    
+
+    messages.appendChild(_message);
+
+    removeFromDom(_message.parentNode, _message, 1500);
+
+
+},
+removeFromDom = (_parent:Node, _el:Element, _delay:number):void => {
+
+    setTimeout( () => {
+        _parent.removeChild(_el);
+    }, _delay);
 
 }

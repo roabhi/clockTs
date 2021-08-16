@@ -37,7 +37,7 @@ IMPORT MODULES
 ============================
 */
 
-import {labels, search, results, formHolder, clocksArr, submitBtn, addClocksBtn, messages, clocksObjArr, clocksHolder} from './globals'; //import const at global scope
+import {labels, search, results, formHolder, heading, info, clocksArr, submitBtn, addClocksBtn, messages, clocksObjArr, clocksHolder} from './globals'; //import const at global scope
 import {createMessage, getLuxonOffSet, toggleScrens, isAlreadyOnList, fetchData, isAlreadyOnPage } from './utils';
 
 /*
@@ -47,6 +47,7 @@ IMPORT STYLES
 */
 
 import '../scss/global.scss';
+import { removeFromDom } from './interactive';
 
 
 
@@ -98,7 +99,18 @@ runClock = ():void => {
  * LOGIC
  */
 
-const onAddClocks = (e:Event):void => {
+const onHeadingClick = (e:Event):void => {
+
+    const _t = e.target as Element;
+
+    if(_t.classList.contains('info-toggler')) {
+        !info.classList.contains('show') ? info.classList.add('show') : info.classList.remove('show');
+    }
+
+},
+
+
+onAddClocks = (e:Event):void => {
 
     console.log(e);
 
@@ -144,14 +156,17 @@ onResultsClick = (e:Event):void =>  {
     let myClock = new Clock(myCityObj);
 
     clocksArr.push(myClock);
+    //clearLocalStorage();
 
-    const _message = createMessage(myCityObj.city, myCityObj.country);
+    localStorage.setItem('clockTsData', JSON.stringify(clocksArr));
+
+    //console.log(clocksArr);
+
+    const _message = createMessage(myCityObj.city, myCityObj.country, 'add');
 
     messages.appendChild(_message);
 
-    setTimeout( () => {
-        _message.parentNode.removeChild(_message);
-    }, 1500);
+    removeFromDom(_message.parentNode, _message, 1500);
 
 
 },
@@ -259,9 +274,58 @@ onSearch = (e:Event):void => {
 
 
 init = (e:Event):void => {
+
+
+    /**
+     * 
+     * 
+     * Local Storage logic
+     * 
+     */
+
+
+     if( typeof localStorage.clockTsData === 'undefined' ){
+        console.log('Not clockTsData present');
+
+        !formHolder.classList.contains('show') ? formHolder.classList.add('show'): null;
+
+
+     }else {
+         //console.log(JSON.parse(localStorage.clockTsData));
+
+         const _data = JSON.parse(localStorage.clockTsData);
+
+        _data.map((_obj) => {
+
+            let myCityObj: {
+                city:string,
+                country:string,
+                iana:string,
+                offset:number
+            } = {
+                city: _obj.city,
+                country: _obj.country,
+                iana: _obj.iana,
+                offset: _obj.offset
+            }
+        
+        
+            let myClock = new Clock(myCityObj);
+        
+            clocksArr.push(myClock);
+
+            runClock();
+
+            
+            
+        });
+
+        !clocksHolder.classList.contains('show') ? clocksHolder.classList.add('show') : null;
+
+     }
     
     
-    !formHolder.classList.contains('show') ? formHolder.classList.add('show'): null;
+    
 
    
     
@@ -310,6 +374,15 @@ init = (e:Event):void => {
       */
 
      addClocksBtn.addEventListener('click', onAddClocks, false);
+
+       /**
+      * 
+      * Listen for clicks on the i button to show info
+      * 
+      */
+
+     heading.addEventListener('click', onHeadingClick, false);
+
 
 
      /**

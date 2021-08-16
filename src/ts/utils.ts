@@ -39,10 +39,13 @@ toggleScrens = ():void => {
 
     
 },
-createMessage = (city:string, country:string):HTMLElement => {
-    const _m = document.createElement('p');
-    _m.className = 'message';
-    _m.innerHTML = `Added ${city}, ${country}`;
+createMessage = (city:string, country:string, _class:string):HTMLElement => {
+    const _m:HTMLParagraphElement = document.createElement('p'),
+           _t:string =  _class == 'add' ? 'Added' : 'Removed';
+
+
+    _m.className = `message ${_class}`;
+    _m.innerHTML = `${_t} ${city}, ${country}`;
 
     return _m;
 

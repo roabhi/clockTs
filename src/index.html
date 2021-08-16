@@ -7,35 +7,28 @@
     <title>ClockTs - A simple, visual and fun way of keep tracking different times zones made on TypeScript for the web</title>
 </head>
 <body>
-    <h3 id="title" class="title"><span>ClockTs</span></h3>
-    <!-- <button class="toggle">Dark mode</button> -->
-    <div id="form-holder" class="form-holder">
-        <div id="messages" class="messages">
-            <!-- <p class="message">Added Barcelona, Spain</p>
-            <p class="message">Added Barcelona, Spain</p> -->
-        </div>
+    <h3 id="title" class="title"><span>ClockTs</span><span class="info-toggler"></span></h3>
+    <div id="messages" class="messages"></div>
+    <div id="form-holder" class="form-holder">        
         <div class="container-form">            
             <div class="form-control">
                 <input id="search" type="text" placeholder="at least four letters" required>
                 <label>Enter a city name</label>
             </div>
-            <!-- <div class="form-control">
-                <input type="text" required>
-                <label>Assign a Label</label>
-            </div> -->
-            <ul id="results" class="results">
-                <!-- <li>Barcelona, Spain</li>
-                <li>Barcelona, Venezuela</li>
-                <li>Barcelona, TitiKaka</li>
-                <li>Barcelona, Tu Padre</li>
-                <li>Barcelona, Tu Madre</li> -->
-            </ul>
+            <ul id="results" class="results"></ul>
             <button id="submit" class="btn">Ok</button>        
         </div> 
     </div>  
     <div id="clocks-holder" class="clocks-holder">
         <div id="add-clock" class="add-clock"><span>+</span></div>
-    </div>  
+    </div>
+    <div id="info" class="info">
+        <h3>clockTs</h3>
+        <p>ClockTs is an experiment and playground for testing TypeScript in combination with a few different things I wanted to try both on the front and back-end side of the web.</p>
+        <p>On the back-end there is a simple rest API deployed on Heroku (please do not abuse it!) feeding data to the front-end in combination with the <a href="https://moment.github.io/luxon/#/" target="_blank">luxon library</a> in order to get the (roughly) right time for each city.</p>
+        <p>On the front-end you can drag and drop the different clocks you add to the app to rearange the order in which thery are placed. The clocks are persistent between visits via localStorage until you modify the data associated with your own browser config.</p>
+        <p>The main focus was to test Typescript and to have some fun with it. I always find that when trying to get an scheduled meeting with somebody from another country I have to go to a website in order to check the offset between me and that person so...this is kind of a personal solution to that. Hope it will help you as well :)</p>
+    </div>
     <script src="./ts/index.ts"></script>
 </body>
 </html>
