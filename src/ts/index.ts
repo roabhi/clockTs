@@ -37,7 +37,7 @@ IMPORT MODULES
 ============================
 */
 
-import {labels, search, results, formHolder, heading, info, clocksArr, submitBtn, addClocksBtn, messages, clocksObjArr, clocksHolder} from './globals'; //import const at global scope
+import {labels, search, results, formHolder, heading, info, clocksArr, submitBtn, addClocksBtn, messages, clocksHolder, clockIsRunning} from './globals'; //import const at global scope
 import {createMessage, getLuxonOffSet, toggleScrens, isAlreadyOnList, fetchData, isAlreadyOnPage } from './utils';
 
 /*
@@ -80,13 +80,8 @@ import { removeFromDom } from './interactive';
 
 
 runClock = ():void => {
-    /**
-     * 
-     * SET INTERVAL
-     */
 
      getTime();
-
      setInterval(getTime, 1000);
      
 }
@@ -127,7 +122,9 @@ onSubmit = (e:Event):void =>  {
 
     toggleScrens();
 
-    runClock();
+    !clockIsRunning.init ? runClock() : null;
+
+    //runClock();
 
 
 
@@ -144,19 +141,25 @@ onResultsClick = (e:Event):void =>  {
         city:string,
         country:string,
         iana:string,
-        offset:number
+        offset:number,
+        position:number
     } = {
         city: _t.innerHTML.substr(0,_t.innerHTML.indexOf(',')),
         country: _t.innerHTML.substr(_t.innerHTML.lastIndexOf(',') + 2, _t.innerHTML.length),
         iana: _t.dataset.timezone,
-        offset: getLuxonOffSet(_t.dataset.timezone)
+        offset: getLuxonOffSet(_t.dataset.timezone),
+        position: clocksHolder.querySelectorAll('div.clock-ts-holder').length
     }
 
 
-    let myClock = new Clock(myCityObj);
+    //console.log(clocksHolder.querySelectorAll('div.clock-ts-holder').length);
 
-    clocksArr.push(myClock);
-    //clearLocalStorage();
+    let myClock = new Clock(myCityObj);    
+
+    clocksArr.push(myClock);   
+
+    console.log(clocksArr);
+
 
     localStorage.setItem('clockTsData', JSON.stringify(clocksArr));
 
@@ -174,9 +177,7 @@ onResultsClick = (e:Event):void =>  {
 
 onSearch = (e:Event):void => {
 
-    const _t = e.currentTarget as HTMLInputElement;
-
-   
+    const _t = e.currentTarget as HTMLInputElement;   
 
     if(_t.value.length > 3) {
 
@@ -283,6 +284,8 @@ init = (e:Event):void => {
      * 
      */
 
+    
+
 
      if( typeof localStorage.clockTsData === 'undefined' ){
         console.log('Not clockTsData present');
@@ -301,12 +304,14 @@ init = (e:Event):void => {
                 city:string,
                 country:string,
                 iana:string,
-                offset:number
+                offset:number,
+                position:number
             } = {
                 city: _obj.city,
                 country: _obj.country,
                 iana: _obj.iana,
-                offset: _obj.offset
+                offset: _obj.offset,
+                position: _obj.position
             }
         
         
@@ -314,11 +319,19 @@ init = (e:Event):void => {
         
             clocksArr.push(myClock);
 
-            runClock();
+            console.log(clocksArr);
+
+           
 
             
             
         });
+
+        runClock();
+
+        clockIsRunning.init = true;
+
+        //Rearrange Objects?
 
         !clocksHolder.classList.contains('show') ? clocksHolder.classList.add('show') : null;
 

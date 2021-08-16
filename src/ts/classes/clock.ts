@@ -27,11 +27,12 @@ export class Clock {
     dateEl:HTMLElement;
     days:string[];
     months:string[];
+    _position:number;
 
-    constructor (_o:{city:string, country:string, iana:string, offset:number}) {
+    constructor (_o:{city:string, country:string, iana:string, offset:number, position:number}) {
         
 
-        console.log(_o);
+        //console.log(_o);
 
         this.city = _o.city;
         this.country = _o.country;
@@ -104,7 +105,7 @@ export class Clock {
         this.container.appendChild(this.dateEl);
 
         
-
+        this._position = _o.position;
 
         /**
          * 
@@ -148,5 +149,9 @@ export class Clock {
 
         this.setClock(myLocalTime.hour, myLocalTime.minute, myLocalTime.second);
 
+    }
+
+    set position(_i:number) {
+        this._position = _i;
     }
 }

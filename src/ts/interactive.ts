@@ -1,6 +1,6 @@
 import { Clock } from "./classes/clock";
 import { clocksHolder, clocksArr, messages } from "./globals";
-import { createMessage, isAlreadyOnPage } from "./utils";
+import { createMessage, isAlreadyOnPage, sortClocks } from "./utils";
 
 
 export const dragStart = (e:Event):void => {
@@ -35,6 +35,9 @@ dragEnd = (e:Event):void => {
         _obj.classList.remove('define');
         
     });
+
+
+    sortClocks();
 
 
 
@@ -77,6 +80,9 @@ dragDrop = (e:Event):void => {
             myDragged.replaceWith(target);
             myHolder.insertBefore(myDragged, afterNode2);
         }   
+
+        
+
 },
 clockRemove = (e:Event):void => {
     const _el = e.currentTarget as Element,
