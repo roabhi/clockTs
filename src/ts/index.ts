@@ -38,7 +38,7 @@ IMPORT MODULES
 */
 
 import {labels, search, results, formHolder, heading, info, clocksArr, submitBtn, addClocksBtn, messages, clocksHolder, clockIsRunning} from './globals'; //import const at global scope
-import {createMessage, getLuxonOffSet, toggleScrens, isAlreadyOnList, fetchData, isAlreadyOnPage } from './utils';
+import {createMessage, getLuxonOffSet, toggleScrens, isAlreadyOnList, fetchData, isAlreadyOnPage, orderClocks } from './utils';
 
 /*
 =============================
@@ -284,19 +284,25 @@ init = (e:Event):void => {
      * 
      */
 
-    
+    console.log(localStorage.clockTsData);
 
 
-     if( typeof localStorage.clockTsData === 'undefined' ){
+     if( typeof localStorage.clockTsData === 'undefined'){
         console.log('Not clockTsData present');
 
         !formHolder.classList.contains('show') ? formHolder.classList.add('show'): null;
+    
+     }else if(JSON.parse(localStorage.clockTsData).length == 0){
 
+        console.log('Empty Array');
 
+        !formHolder.classList.contains('show') ? formHolder.classList.add('show'): null;
      }else {
          //console.log(JSON.parse(localStorage.clockTsData));
 
          const _data = JSON.parse(localStorage.clockTsData);
+
+         //console.log('data is ', _data);
 
         _data.map((_obj) => {
 
@@ -311,7 +317,7 @@ init = (e:Event):void => {
                 country: _obj.country,
                 iana: _obj.iana,
                 offset: _obj.offset,
-                position: _obj.position
+                position: _obj._position
             }
         
         
@@ -319,13 +325,17 @@ init = (e:Event):void => {
         
             clocksArr.push(myClock);
 
-            console.log(clocksArr);
+            
+
+
 
            
 
             
             
         });
+
+        orderClocks();
 
         runClock();
 

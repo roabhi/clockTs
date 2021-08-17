@@ -105,6 +105,8 @@ export class Clock {
         this.container.appendChild(this.dateEl);
 
         
+
+        
         this._position = _o.position;
 
         /**
@@ -116,6 +118,7 @@ export class Clock {
         this.clockShape.addEventListener('click', interactive.clockRemove, false);
 
         this.container.setAttribute('draggable', 'true'); //Make draggable
+        this.container.setAttribute('data-position', _o.position.toString());
         this.container.addEventListener('dragstart', interactive.dragStart, false);
         this.container.addEventListener('dragend', interactive.dragEnd, false);
         this.container.addEventListener('drop', interactive.dragDrop, false);
@@ -153,5 +156,9 @@ export class Clock {
 
     set position(_i:number) {
         this._position = _i;
+    }
+
+    get position():number {
+        return this._position;
     }
 }
