@@ -12,7 +12,7 @@ IMPORT DATA
 ============================
 */
 
-import * as data from '../data/citymap.json';
+//import * as data from '../data/citymap.json';
 
 /*
 =============================
@@ -203,7 +203,7 @@ onSearch = (e:Event):void => {
 
         
 
-        //DEV
+        //Local data (./src/data)
         
         // for(let i in data) {
             
