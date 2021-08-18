@@ -170,54 +170,54 @@ onSearch = (e:Event):void => {
 
         //Call API
 
-        //_f.classList.add('loading');
+        _f.classList.add('loading');
 
-        // let result = fetchData(String(_t.value).toLowerCase())
-        // .then(  
-        //     (_d) => {       
+        let result = fetchData(String(_t.value).toLowerCase())
+        .then(  
+            (_d) => {       
           
-        //     for(let i in _d)  {
+            for(let i in _d)  {
 
       
-        //         if( String(_d[i].city).toLowerCase() == String(_t.value).toLowerCase() ){                    
+                if( String(_d[i].city).toLowerCase() == String(_t.value).toLowerCase() ){                    
                     
 
-        //             if(!isAlreadyOnPage(String(_d[i].city), String(_d[i].country))) {
+                    if(!isAlreadyOnPage(String(_d[i].city), String(_d[i].country))) {
 
-        //                 const li = `<li data-timezone="${_d[i].timezone}">${_d[i].city}, ${_d[i].country}</li>`;
+                        const li = `<li data-timezone="${_d[i].timezone}">${_d[i].city}, ${_d[i].country}</li>`;
 
-        //                 if(!isAlreadyOnList(li)){
-        //                     results.innerHTML += `<li data-timezone="${_d[i].timezone}">${_d[i].city}, ${_d[i].country}</li>`;
-        //                 }
+                        if(!isAlreadyOnList(li)){
+                            results.innerHTML += `<li data-timezone="${_d[i].timezone}">${_d[i].city}, ${_d[i].country}</li>`;
+                        }
 
-        //             }
+                    }
           
             
-        //         } 
+                } 
 
-        //     }                
+            }                
                   
-        //     _f.classList.remove('loading');
+            _f.classList.remove('loading');
 
-        // },(error) => {
-        //     console.log('error');
-        // });
+        },(error) => {
+            console.log('error');
+        });
 
 
         
 
         //Local data (./src/data)
         
-        for(let i in data) {
+        // for(let i in data) {
             
-            if( String(data[i].city).toLowerCase() == String(_t.value).toLowerCase() ){
+        //     if( String(data[i].city).toLowerCase() == String(_t.value).toLowerCase() ){
 
-                !isAlreadyOnPage(String(data[i].city), String(data[i].country)) ? results.innerHTML += `<li data-timezone="${data[i].timezone}">${data[i].city}, ${data[i].country}</li>` : null;
+        //         !isAlreadyOnPage(String(data[i].city), String(data[i].country)) ? results.innerHTML += `<li data-timezone="${data[i].timezone}">${data[i].city}, ${data[i].country}</li>` : null;
 
-            }
+        //     }
 
            
-        }
+        // }
 
        
 
