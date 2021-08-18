@@ -1,3 +1,5 @@
+$layout-breakpoint-small: 60rem;
+
 @keyframes spin {
     from {transform:rotate(0deg);}
     to {transform:rotate(180deg);}
@@ -174,6 +176,33 @@
                 transform:scale(.98);
             }
 
+            @media (max-width: $layout-breakpoint-small) {
+                font-size:0.813rem;
+            }
+
+        }
+
+        @media (max-width: $layout-breakpoint-small) {
+            
+            width:90%;
+            margin:0 auto;
+
+            .form-control {
+                width:100%;
+
+                input {
+                    font-size:0.875rem;                    
+                }
+
+                label {
+
+                    span {
+                        font-size:0.813rem;
+                    }
+
+                }
+            }
+            
         }
     }
 

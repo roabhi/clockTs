@@ -25,15 +25,7 @@ IMPORT FONTS
 @import url('./partials/form.scss');
 @import url('./partials/clocks.scss');
 
-
-$--primary-color: #000;
-$--secondary-color: #fff;
-
-@mixin screen-max($max) { 
-    @media (max-width: $max) { 
-        @content 
-    } 
-};
+$layout-breakpoint-small: 60rem;
 
 
 body {
@@ -43,31 +35,17 @@ body {
     overflow:hidden;
 }
 
-html {
-    transition: all .5s ease-in;
-}
-
-html.dark {
-    $--primary-color: #fff;
-    $--secondary-color: #333;
-}
-
-
-
-html.dark {
-    background-color:#111;
-    color:$--primary-color;
-}
-
 div.info {
     position:fixed;
     top:0;
     right:0;
-    width:25%;
+    width:28rem;
     height:100%;
     background:#000 none;
     color:#fff;
     padding:6rem 2rem 2rem 2rem;
+
+    font-family:Helvetica Neue, Helvetica, Arial, sans-serif;
 
     overflow-y:auto;
 
@@ -95,6 +73,13 @@ div.info {
             font-weight: 600;
         }
     }
+
+    @media (max-width: $layout-breakpoint-small) {
+        width:100%;
+        
+    }
+
+
 }
 
 h3.title {
@@ -106,6 +91,7 @@ h3.title {
     z-index:1;
     background:#000 none;
     position:relative;
+    border-bottom:#1a1a1a 0.063rem solid;
 
     span {
         
@@ -166,22 +152,7 @@ div.messages {
 }
 
 
-.toggle {
-    background-color:$--primary-color;
-    color:$--secondary-color;
-    border:0;
-    border-radius:0.250rem;
-    padding:0.500rem 0.750rem;
-    position:fixed;
-    top:3rem;
-    right:1.5rem;
-    cursor:pointer;
-    z-index:10;
 
-    &:focus {
-        outline: none;
-    }
-}
 
 
 
