@@ -29,6 +29,12 @@ IMPORT FONTS
 $--primary-color: #000;
 $--secondary-color: #fff;
 
+@mixin screen-max($max) { 
+    @media (max-width: $max) { 
+        @content 
+    } 
+};
+
 
 body {
     font-family: 'Poppins', Helvetica Neue, Helvetica, Arial, sans-serif;
@@ -142,6 +148,7 @@ div.messages {
         margin:1rem 0 0 0;        
         padding:1rem;
         font-size:0.875rem;
+        font-weight:600;
         border-radius:0.5rem;
         color:#fff;
         

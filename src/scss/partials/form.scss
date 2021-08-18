@@ -1,3 +1,9 @@
+@keyframes spin {
+    from {transform:rotate(0deg);}
+    to {transform:rotate(180deg);}
+}
+
+
 .form-holder {
     width:100%;
     height:100%;
@@ -34,6 +40,20 @@
             margin:1.250rem 0 0 0;
             width:18.750rem;
 
+            &::after {
+                content:'';
+                position:absolute;
+                width:1.125rem;
+                height:1.25rem;
+                display:block;
+                right:0;
+                background:transparent url('../../ui/sync.svg') no-repeat center center;
+                top:1.125rem;
+
+                opacity:0;
+
+            }
+
             input {
                 background-color:transparent;
                 border:0;
@@ -48,7 +68,6 @@
                     font-size:0.813rem;
                     font-style: italic;
                 }
-                
 
                 &:focus, &:valid {
                     outline:0;
@@ -83,6 +102,20 @@
                 }
             }
 
+
+            &.loading {
+                
+                &::after {
+                    // animation-name: spin;
+                    // animation-duration: .5s;
+                    // animation-iteration-count: infinite;
+                    // animation-timing-function: cubic-bezier(0.190, 1.000, 0.220, 1.000);
+
+                    opacity:1;
+
+                    animation: spin .5s cubic-bezier(0.190, 1.000, 0.220, 1.000) 0s infinite normal;
+                }
+            }
 
         }
 

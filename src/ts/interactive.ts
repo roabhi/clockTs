@@ -90,9 +90,7 @@ clockRemove = (e:Event):void => {
           _city:string = _el.parentNode.querySelector('h4').textContent.substr( 0, _el.parentNode.querySelector('h4').textContent.indexOf(',')),
           _message = createMessage(_city,_country,'remove');
 
-    // console.log(`the clock about to remove is city ${_city}, and country ${_country}`);
-
-   
+ 
 
    let index:number;
     
@@ -111,8 +109,6 @@ clockRemove = (e:Event):void => {
     clocksArr.splice(index,1);
 
     localStorage.setItem('clockTsData', JSON.stringify(clocksArr));
-
-    // console.log(JSON.parse(localStorage.clockTsData), clocksArr);    
 
     messages.appendChild(_message);
 

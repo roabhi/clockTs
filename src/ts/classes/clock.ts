@@ -132,26 +132,17 @@ export class Clock {
    
 
     setClock(_h:number, _m:number, _s:number):void {
-        //console.log(`${nToLeadingZero(_h + this.offset)} : ${nToLeadingZero(_m)} : ${nToLeadingZero(_s)}`);
-
         this.hourEl.style.transform = `translate(-50%, -100%) rotate(${scale(_h, 0, 12, 0, 360)}deg)`;
         this.minuteEl.style.transform = `translate(-50%, -100%) rotate(${scale(_m, 0, 60, 0, 360)}deg)`;
         this.secondEl.style.transform = `translate(-50%, -100%) rotate(${scale(_s, 0, 60, 0, 360)}deg)`;
-
         this.timeEl.innerHTML = `${nToLeadingZero(_h)}:${nToLeadingZero(_m)}:${nToLeadingZero(_s)}`;
-        //dateEl.innerHTML = `${days[day]}, ${months[month]} <span class="circle">${date}</span>`;
-
     }
 
-    getLocalTime():void {
-        
+    getLocalTime():void {        
 
         let myLocalTime = DateTime.fromObject({}, {zone: this.iana})
-
-        // console.log(myLocalTime);
-
         this.setClock(myLocalTime.hour, myLocalTime.minute, myLocalTime.second);
-
+        
     }
 
     set position(_i:number) {

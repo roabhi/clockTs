@@ -61,20 +61,14 @@ import { removeFromDom } from './interactive';
 
  const getTime = ():void => {
 
-     //const now = DateTime.now().toUTC();
-     // console.log(now.c, now.c.hour + ':' + now.c.minute + ':' + now.c.second); 
-
    if(clocksArr.length){
 
         clocksArr.forEach((el,i) => {
 
-            //el.setClock(now.c.hour, now.c.minute, now.c.second);
             el.getLocalTime();
 
         });   
-   }
-  
-   
+   }     
 
 },
 
@@ -107,8 +101,6 @@ const onHeadingClick = (e:Event):void => {
 
 onAddClocks = (e:Event):void => {
 
-    console.log(e);
-
     toggleScrens();
 
 },
@@ -123,10 +115,6 @@ onSubmit = (e:Event):void =>  {
     toggleScrens();
 
     !clockIsRunning.init ? runClock() : null;
-
-    //runClock();
-
-
 
 },
 
@@ -152,18 +140,11 @@ onResultsClick = (e:Event):void =>  {
     }
 
 
-    //console.log(clocksHolder.querySelectorAll('div.clock-ts-holder').length);
-
     let myClock = new Clock(myCityObj);    
 
     clocksArr.push(myClock);   
 
-    console.log(clocksArr);
-
-
     localStorage.setItem('clockTsData', JSON.stringify(clocksArr));
-
-    //console.log(clocksArr);
 
     const _message = createMessage(myCityObj.city, myCityObj.country, 'add');
 
@@ -177,73 +158,63 @@ onResultsClick = (e:Event):void =>  {
 
 onSearch = (e:Event):void => {
 
-    const _t = e.currentTarget as HTMLInputElement;   
+    const _t = e.currentTarget as HTMLInputElement,
+          _f = _t.parentNode as Element;
 
     if(_t.value.length > 3) {
+
+        _f.classList.add('loading');
 
         results.innerHTML = '';
 
         //Call API
 
-        // let result = fetchData(String(_t.value).toLowerCase())
-        // .then(  
-        //     (_d) => {       
+        let result = fetchData(String(_t.value).toLowerCase())
+        .then(  
+            (_d) => {       
           
-        //     for(let i in _d)  {
+            for(let i in _d)  {
 
       
-        //         if( String(_d[i].city).toLowerCase() == String(_t.value).toLowerCase() ){
-
+                if( String(_d[i].city).toLowerCase() == String(_t.value).toLowerCase() ){                    
                     
-        //             // !isAlreadyOnPage(String(_d[i].city), String(_d[i].country)) ? results.innerHTML += `<li data-timezone="${_d[i].timezone}">${_d[i].city}, ${_d[i].country}</li>` : null;
-    
-        //             // console.log(isAlreadyOnPage( String(_d[i].city), String(_d[i].country) ));
-                
-        //             //results.innerHTML += `<li data-timezone="${_d[i].timezone}">${_d[i].city}, ${_d[i].country}</li>`;
 
-        //             if(!isAlreadyOnPage(String(_d[i].city), String(_d[i].country))) {
+                    if(!isAlreadyOnPage(String(_d[i].city), String(_d[i].country))) {
 
-        //                 const li = `<li data-timezone="${_d[i].timezone}">${_d[i].city}, ${_d[i].country}</li>`;
+                        const li = `<li data-timezone="${_d[i].timezone}">${_d[i].city}, ${_d[i].country}</li>`;
 
-        //                 if(!isAlreadyOnList(li)){
-        //                     results.innerHTML += `<li data-timezone="${_d[i].timezone}">${_d[i].city}, ${_d[i].country}</li>`;
-        //                 }
+                        if(!isAlreadyOnList(li)){
+                            results.innerHTML += `<li data-timezone="${_d[i].timezone}">${_d[i].city}, ${_d[i].country}</li>`;
+                        }
 
-        //             }
+                    }
           
             
-        //         } 
+                } 
 
-        //     }                
+            }                
                   
+            _f.classList.remove('loading');
 
-
-        // },(error) => {
-        //     console.log('error');
-        // });
+        },(error) => {
+            console.log('error');
+        });
 
 
         
 
         //DEV
         
-        for(let i in data) {
+        // for(let i in data) {
             
-            if( String(data[i].city).toLowerCase() == String(_t.value).toLowerCase() ){
+        //     if( String(data[i].city).toLowerCase() == String(_t.value).toLowerCase() ){
 
+        //         !isAlreadyOnPage(String(data[i].city), String(data[i].country)) ? results.innerHTML += `<li data-timezone="${data[i].timezone}">${data[i].city}, ${data[i].country}</li>` : null;
 
-
-                !isAlreadyOnPage(String(data[i].city), String(data[i].country)) ? results.innerHTML += `<li data-timezone="${data[i].timezone}">${data[i].city}, ${data[i].country}</li>` : null;
-
-                // console.log(isAlready( String(data[i].city), String(data[i].country) ));
-
-                // results.innerHTML += `<li data-timezone="${data[i].timezone}">${data[i].city}, ${data[i].country}</li>`;
-
-
-            }
+        //     }
 
            
-        }
+        // }
 
        
 
@@ -284,25 +255,18 @@ init = (e:Event):void => {
      * 
      */
 
-    console.log(localStorage.clockTsData);
-
-
+ 
      if( typeof localStorage.clockTsData === 'undefined'){
-        console.log('Not clockTsData present');
 
         !formHolder.classList.contains('show') ? formHolder.classList.add('show'): null;
     
      }else if(JSON.parse(localStorage.clockTsData).length == 0){
 
-        console.log('Empty Array');
-
         !formHolder.classList.contains('show') ? formHolder.classList.add('show'): null;
+
      }else {
-         //console.log(JSON.parse(localStorage.clockTsData));
 
          const _data = JSON.parse(localStorage.clockTsData);
-
-         //console.log('data is ', _data);
 
         _data.map((_obj) => {
 
@@ -324,13 +288,6 @@ init = (e:Event):void => {
             let myClock = new Clock(myCityObj);
         
             clocksArr.push(myClock);
-
-            
-
-
-
-           
-
             
             
         });
@@ -341,16 +298,9 @@ init = (e:Event):void => {
 
         clockIsRunning.init = true;
 
-        //Rearrange Objects?
-
         !clocksHolder.classList.contains('show') ? clocksHolder.classList.add('show') : null;
 
      }
-    
-    
-    
-
-   
     
     
     labels.forEach(el => {         
@@ -360,10 +310,6 @@ init = (e:Event):void => {
             .map((letter, i) =>  `<span style="transition-delay:${i * 30 }ms">${letter}</span>`)
             .join('')
     });
-
-
-
-
    
     
     document.removeEventListener('DOMContentLoaded', init, false);
