@@ -24,10 +24,10 @@
     </div>
     <div id="info" class="info">
         <h3>clockTs</h3>
-        <p>ClockTs is an experiment and playground for testing TypeScript in combination with a few different things I wanted to try both on the front and back-end side of the web.</p>
-        <p>On the back-end there is a simple rest API deployed on Heroku (please do not abuse it!) feeding data to the front-end in combination with the <a href="https://moment.github.io/luxon/#/" target="_blank">luxon library</a> in order to get the (roughly) right time for each city.</p>
-        <p>On the front-end you can drag and drop the different clocks you add to the app to rearange the order in which thery are placed. The clocks are persistent between visits via localStorage until you modify the data associated with your own browser config.</p>
-        <p>The main focus was to test Typescript and to have some fun with it. I always find that when trying to get an scheduled meeting with somebody from another country I have to go to a website in order to check the offset between me and that person so...this is kind of a personal solution to that. Hope it will help you as well :)</p>
+        <p>ClockTs is an experiment and playground for testing TypeScript in combination with a few different things I wanted to try such as the <a href="https://moment.github.io/luxon/#/" target="_blank">luxon library</a>, a custom drag&drop functionality and the localStorage API.</p>
+        <p>The main focus was to have fun with it and at the same time to solve a problem I find myself having when trying to schedule a meeting with someone living in another country. You know, we are living in the XXI century and going to <a href="https://www.timeanddate.com/" target="_blank">timeanddate.com</a> each time I wanted to check on the local time for my mate from Poland was too much.</p>
+        <p>Anyways, so all in all you can rearrange your clocks as you please and they will stay like that as you keep adding or removing more and across visits.</p>
+        <p>There are two versions, one with a local data for the cities and their timezones (a json file downloaded from <a href="https://github.com/kevinroberts/city-timezones/blob/master/data/cityMap.json" target="_blank">here</a> ) and a remote version which implements a simple REST API I also made in Typescript to serve that same json file. All the code is available on my <a href="https://github.com/roabhi/clockTs" target="_blank">Github repo</a>.</p>       
     </div>
     <script src="./ts/index.ts"></script>
 </body>

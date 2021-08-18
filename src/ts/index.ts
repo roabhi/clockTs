@@ -93,7 +93,7 @@ const onHeadingClick = (e:Event):void => {
     const _t = e.target as Element;
 
     if(_t.classList.contains('info-toggler')) {
-        !info.classList.contains('show') ? info.classList.add('show') : info.classList.remove('show');
+        !document.body.classList.contains('showing-info') ? document.body.classList.add('showing-info') : document.body.classList.remove('showing-info');
     }
 
 },
@@ -163,58 +163,61 @@ onSearch = (e:Event):void => {
 
     if(_t.value.length > 3) {
 
-        _f.classList.add('loading');
+        
 
         results.innerHTML = '';
 
+
         //Call API
 
-        let result = fetchData(String(_t.value).toLowerCase())
-        .then(  
-            (_d) => {       
+        //_f.classList.add('loading');
+
+        // let result = fetchData(String(_t.value).toLowerCase())
+        // .then(  
+        //     (_d) => {       
           
-            for(let i in _d)  {
+        //     for(let i in _d)  {
 
       
-                if( String(_d[i].city).toLowerCase() == String(_t.value).toLowerCase() ){                    
+        //         if( String(_d[i].city).toLowerCase() == String(_t.value).toLowerCase() ){                    
                     
 
-                    if(!isAlreadyOnPage(String(_d[i].city), String(_d[i].country))) {
+        //             if(!isAlreadyOnPage(String(_d[i].city), String(_d[i].country))) {
 
-                        const li = `<li data-timezone="${_d[i].timezone}">${_d[i].city}, ${_d[i].country}</li>`;
+        //                 const li = `<li data-timezone="${_d[i].timezone}">${_d[i].city}, ${_d[i].country}</li>`;
 
-                        if(!isAlreadyOnList(li)){
-                            results.innerHTML += `<li data-timezone="${_d[i].timezone}">${_d[i].city}, ${_d[i].country}</li>`;
-                        }
+        //                 if(!isAlreadyOnList(li)){
+        //                     results.innerHTML += `<li data-timezone="${_d[i].timezone}">${_d[i].city}, ${_d[i].country}</li>`;
+        //                 }
 
-                    }
+        //             }
           
             
-                } 
+        //         } 
 
-            }                
+        //     }                
                   
-            _f.classList.remove('loading');
+        //     _f.classList.remove('loading');
 
-        },(error) => {
-            console.log('error');
-        });
+        // },(error) => {
+        //     console.log('error');
+        // });
 
 
         
 
         //Local data (./src/data)
         
-        // for(let i in data) {
+        for(let i in data) {
             
-        //     if( String(data[i].city).toLowerCase() == String(_t.value).toLowerCase() ){
+            if( String(data[i].city).toLowerCase() == String(_t.value).toLowerCase() ){
 
-        //         !isAlreadyOnPage(String(data[i].city), String(data[i].country)) ? results.innerHTML += `<li data-timezone="${data[i].timezone}">${data[i].city}, ${data[i].country}</li>` : null;
+                !isAlreadyOnPage(String(data[i].city), String(data[i].country)) ? results.innerHTML += `<li data-timezone="${data[i].timezone}">${data[i].city}, ${data[i].country}</li>` : null;
 
-        //     }
+            }
 
            
-        // }
+        }
 
        
 
