@@ -53,9 +53,7 @@ div.info {
 
     transition: transform .5s cubic-bezier(0.165, 0.84, 0.44, 1);
 
-    &.show {
-        transform:translateX(0);
-    }
+    
 
     h3 {
         padding:0;
@@ -105,19 +103,29 @@ h3.title {
         // color:#fff;
         // display:inline-block;
         // vertical-align: middle;
-        padding:1rem;
+        padding:1rem 0 1rem 2rem;
         position:relative;
         font-size:0.813rem;
     }
 
     span:last-of-type {
         position:absolute;
-        right:1rem;
-        top:1rem;
-        background:transparent url('../ui/info.svg') no-repeat center center;
+        right:2rem;
+        top:1.250rem;
+        // background:transparent url('../ui/info.svg') no-repeat center center;
         width:1.125rem;
-        height:1.125rem;
+        height:0.63rem;
         cursor:pointer;
+        color:#fff;
+
+        background: linear-gradient(
+    	to bottom, 
+    	currentColor, currentColor 20%, 
+    	transparent 20%, transparent 40%, 
+    	currentColor 40%, currentColor 60%, 
+    	transparent 60%, transparent 80%, 
+    	currentColor 80%, currentColor 100%
+  	    );
 
 
     }
@@ -147,6 +155,25 @@ div.messages {
        }
 
        
+    }
+
+}
+
+
+body.showing-info {
+
+    div.info {
+        transform:translateX(0);
+    }
+
+    .form-holder, .clocks-holder {
+        width:calc(100% - 28rem);
+
+        @media (max-width: $layout-breakpoint-small) {
+            width:100%;
+            
+        }
+
     }
 
 }
