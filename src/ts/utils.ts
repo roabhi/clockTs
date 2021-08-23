@@ -98,13 +98,13 @@ isAlreadyOnList = (_el:string):boolean => {
     return answer;
 },
 
-
 fetchData = async(_name:string):Promise<JSON> => {
     
+   
     const call = await fetch(`https://ts--api--rest.herokuapp.com/cities/${_name}`),
           res = await call.json();
 
-    return res.data;   
+    return res.data;      
     
 
 },
