@@ -1,5 +1,7 @@
 # ClockTs
-![clockTs](https://i.ibb.co/R4TBJWL/clock-Ts-img.png)
+
+<img src="https://i.ibb.co/R4TBJWL/clock-Ts-img.png" width="720" height="320">
+
 A simple, visual and fun way of keep tracking different times zones made on TypeScript for the web
 
 ### About
