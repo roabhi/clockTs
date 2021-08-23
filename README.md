@@ -16,7 +16,7 @@ Kudos to [kevin roberts](https://github.com/kevinroberts) for providing with the
 
 ### Demo
 
-[here is a demo](https://www.roabhi.es/clockTs). The REST service is not included in master, just the local json with all the data for the cities / timezones.
+[Here is a demo](https://www.roabhi.es/clockTs). The REST service is not included in master, just the local json with all the data for the cities / timezones.
 
 
 ### Installation
