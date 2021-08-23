@@ -1,6 +1,6 @@
 # ClockTs
 
-<img src="https://i.ibb.co/R4TBJWL/clock-Ts-img.png" width="1280" height="640">
+<img src="https://i.ibb.co/R4TBJWL/clock-Ts-img.png" width="100%" height="100%">
 
 A simple, visual and fun way of keep tracking different times zones made on TypeScript for the web
 
