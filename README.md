@@ -12,7 +12,7 @@ Anyways, so all in all you can rearrange your clocks as you please and they will
 
 ### Credits
 
-Kudos to [kevin roberts](https://github.com/kevinroberts) for providing with the json file detailing I am using.
+Kudos to [kevin roberts](https://github.com/kevinroberts) for providing with the json file detailing an insane amount of cities with their respective timezones that I am using. 
 
 ### Demo
 
