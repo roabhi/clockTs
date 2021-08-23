@@ -234,19 +234,6 @@ onSearch = (e:Event):void => {
     
 
 },
-// themeSwitcher = (e:Event):void => {
-//     const html:Element = document.querySelector('html'),
-//           target = e.target as HTMLElement; //Typescript specific to cast the event
-
-//     if(html.classList.contains('dark')) {
-//         html.classList.remove('dark');
-//         target.innerHTML = 'Dark Mode';
-//     }else {
-//         html.classList.add('dark');
-//         target.innerHTML = 'Light Mode';
-//     }
-// },
-
 
 init = (e:Event):void => {
 
